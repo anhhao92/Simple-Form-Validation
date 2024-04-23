@@ -10,11 +10,11 @@ class ShoppingCartBadge extends ConsumerWidget {
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
-    var (_, total) = ref.watch(totalAmountProvider);
+    var state = ref.watch(shoppingCartProvider);
 
     return Badge(
       alignment: Alignment.topLeft,
-      label: Text('$total'),
+      label: Text('${state.total}'),
       child: IconButton(
           onPressed: () {
             Navigator.restorablePushNamed(

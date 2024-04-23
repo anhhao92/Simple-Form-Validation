@@ -8,7 +8,7 @@ class ShoppingCartFooter extends ConsumerWidget {
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
-    var (total, _) = ref.watch(totalAmountProvider);
+    var state = ref.watch(shoppingCartProvider);
 
     return Container(
       color: Colors.amberAccent,
@@ -22,7 +22,7 @@ class ShoppingCartFooter extends ConsumerWidget {
                 fontSize: 20, fontWeight: FontWeight.bold, color: Colors.red),
           ),
           Text(
-            "$total VND",
+            '${state.amount} VND',
             style: const TextStyle(fontWeight: FontWeight.bold, fontSize: 20),
           )
         ],

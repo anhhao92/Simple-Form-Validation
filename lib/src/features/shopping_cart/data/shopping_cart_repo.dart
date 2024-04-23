@@ -8,34 +8,17 @@ part 'shopping_cart_repo.g.dart';
 class ShoppingCart extends _$ShoppingCart {
   @override
   ShoppingCartInfo build() {
-    return ShoppingCartInfo(totalMap: {}, movies: []);
+    return ShoppingCartInfo(movies: {});
   }
 
   void addToCard(Movie movie) {
-    var key = movie.movieName;
-
-    state.totalMap.update(key, (value) => value + 1, ifAbsent: () {
-      state.movies.add(movie);
-      return 1;
-    });
-    state = state.copyWith(
-        movies: state.movies, totalMap: state.totalMap, recentAddedItem: movie);
+    var key = movie;
+    state.movies.update(key, (value) => value + 1, ifAbsent: () => 1);
+    state = state.copyWith(movies: state.movies, recentAddedItem: movie);
   }
 
   void removeFromCard(Movie movie) {
-    state.totalMap.remove(movie.movieName);
-    state.movies.removeWhere((value) => value.movieName == movie.movieName);
-    state = state.copyWith(movies: state.movies, totalMap: state.totalMap);
+    state.movies.remove(movie);
+    state = state.copyWith(movies: state.movies);
   }
-}
-
-@riverpod
-(int, int) totalAmount(TotalAmountRef ref) {
-  var state = ref.watch(shoppingCartProvider);
-  int amount = 0, total = 0;
-  for (var e in state.totalMap.values) {
-    amount += e * 55000;
-    total += e;
-  }
-  return (amount, total);
 }

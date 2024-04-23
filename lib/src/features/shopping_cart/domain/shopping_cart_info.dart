@@ -1,20 +1,19 @@
 import 'package:movie_booking/src/features/movie_listing/domain/movie.dart';
 
 class ShoppingCartInfo {
-  final List<Movie> movies;
-  final Map<String, int> totalMap;
+  final Map<Movie, int> movies;
   final Movie? recentAddedItem;
 
-  ShoppingCartInfo(
-      {required this.movies, required this.totalMap, this.recentAddedItem});
+  ShoppingCartInfo({required this.movies, this.recentAddedItem});
 
-  ShoppingCartInfo copyWith(
-      {List<Movie>? movies,
-      Map<String, int>? totalMap,
-      Movie? recentAddedItem}) {
+  ShoppingCartInfo copyWith({Map<Movie, int>? movies, Movie? recentAddedItem}) {
     return ShoppingCartInfo(
         movies: movies ?? this.movies,
-        totalMap: totalMap ?? this.totalMap,
         recentAddedItem: recentAddedItem ?? this.recentAddedItem);
   }
+
+  int get total => movies.isEmpty
+      ? 0
+      : movies.values.reduce((value, element) => value + element);
+  int get amount => total * 55000;
 }

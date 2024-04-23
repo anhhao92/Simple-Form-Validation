@@ -1,8 +1,8 @@
 {
   "appTitle": "Ciné",
-  "cartTitle": "Giỏ Hàng",
+  "cartTitle": "Giỏ hàng",
   "nowShowing": "Phim Đang Chiếu",
-  "releaseDate": "Khởi Chiếu",
-  "buy": "Mua Vé",
+  "releaseDate": "Khởi chiếu",
+  "buy": "Mua vé",
   "totalAmount": "Tổng thanh toán:"
 }
