@@ -4,7 +4,7 @@ class ShoppingCartInfo {
   final Map<Movie, int> movies;
   final Movie? recentAddedItem;
 
-  ShoppingCartInfo({required this.movies, this.recentAddedItem});
+  const ShoppingCartInfo({required this.movies, this.recentAddedItem});
 
   ShoppingCartInfo copyWith({Map<Movie, int>? movies, Movie? recentAddedItem}) {
     return ShoppingCartInfo(

@@ -8,32 +8,33 @@ class ShoppingCartList extends ConsumerWidget {
   @override
   Widget build(BuildContext context, WidgetRef ref) {
     final state = ref.watch(shoppingCartProvider);
-    final movies = state.movies.keys.toList();
+    final movies = state.movies.keys;
 
     return ListView.builder(
       itemExtent: 70,
       itemCount: state.movies.length,
-      itemBuilder: (context, index) => ListTile(
-        leading: Image.network(
-          movies[index].posterURL,
-        ),
-        title: Text(
-          movies[index].movieName,
-          style: const TextStyle(fontWeight: FontWeight.bold),
-        ),
-        subtitle: Text(
-          "${state.movies[movies[index]]} x 55.000 VND",
-          style: const TextStyle(fontStyle: FontStyle.italic, fontSize: 16),
-        ),
-        trailing: IconButton(
-          icon: const Icon(Icons.delete),
-          onPressed: () {
-            ref
-                .read(shoppingCartProvider.notifier)
-                .removeFromCard(movies[index]);
-          },
-        ),
-      ),
+      itemBuilder: (context, index) {
+        final item = movies.elementAt(index);
+        return ListTile(
+          leading: Image.network(
+            item.posterURL,
+          ),
+          title: Text(
+            item.movieName,
+            style: const TextStyle(fontWeight: FontWeight.bold),
+          ),
+          subtitle: Text(
+            '${state.movies[item]} x 55.000 VND',
+            style: const TextStyle(fontStyle: FontStyle.italic, fontSize: 16),
+          ),
+          trailing: IconButton(
+            icon: const Icon(Icons.delete),
+            onPressed: () {
+              ref.read(shoppingCartProvider.notifier).removeFromCard(item);
+            },
+          ),
+        );
+      },
     );
   }
 }

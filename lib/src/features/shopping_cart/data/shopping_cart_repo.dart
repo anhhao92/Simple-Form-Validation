@@ -8,12 +8,11 @@ part 'shopping_cart_repo.g.dart';
 class ShoppingCart extends _$ShoppingCart {
   @override
   ShoppingCartInfo build() {
-    return ShoppingCartInfo(movies: {});
+    return const ShoppingCartInfo(movies: {});
   }
 
   void addToCard(Movie movie) {
-    var key = movie;
-    state.movies.update(key, (value) => value + 1, ifAbsent: () => 1);
+    state.movies.update(movie, (value) => value + 1, ifAbsent: () => 1);
     state = state.copyWith(movies: state.movies, recentAddedItem: movie);
   }
 
