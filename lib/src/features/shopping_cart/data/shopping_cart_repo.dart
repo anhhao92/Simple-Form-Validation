@@ -8,7 +8,7 @@ part 'shopping_cart_repo.g.dart';
 class ShoppingCart extends _$ShoppingCart {
   @override
   ShoppingCartInfo build() {
-    return const ShoppingCartInfo(movies: {});
+    return ShoppingCartInfo(movies: {});
   }
 
   void addToCard(Movie movie) {
