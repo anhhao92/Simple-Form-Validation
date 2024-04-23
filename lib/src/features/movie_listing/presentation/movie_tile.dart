@@ -9,6 +9,7 @@ class MovieTile extends ConsumerWidget {
   const MovieTile({super.key, required this.movie});
 
   final Movie movie;
+  static final Tween<double> tween = Tween(begin: 0, end: 1);
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
@@ -49,17 +50,27 @@ class MovieTile extends ConsumerWidget {
             ),
           ),
         ),
-        SizedBox(
-          width: 80,
-          height: 35,
-          child: TextButton(
-              style: TextButton.styleFrom(
-                backgroundColor: Colors.limeAccent,
-              ),
-              onPressed: () {
-                ref.read(shoppingCartProvider.notifier).addToCard(movie);
-              },
-              child: Text(t.buy)),
+        TweenAnimationBuilder(
+          builder: (BuildContext context, double value, Widget? child) {
+            return Transform.scale(
+              scale: value,
+              child: child,
+            );
+          },
+          curve: Curves.easeInOut,
+          tween: tween,
+          duration: const Duration(seconds: 1),
+          child: SizedBox(
+              width: 80,
+              height: 35,
+              child: TextButton(
+                  style: TextButton.styleFrom(
+                    backgroundColor: Colors.limeAccent,
+                  ),
+                  onPressed: () {
+                    ref.read(shoppingCartProvider.notifier).addToCard(movie);
+                  },
+                  child: Text(t.buy))),
         ),
       ],
     );

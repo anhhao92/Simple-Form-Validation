@@ -7,7 +7,7 @@ part of 'movie_listing_repo.dart';
 // **************************************************************************
 
 String _$movieListingRepositoryHash() =>
-    r'40457a062d0cfeb5333b4181782cb566b02cb0e5';
+    r'3ef70171530d5c9977be4b5e32b51177ee2f843b';
 
 /// See also [movieListingRepository].
 @ProviderFor(movieListingRepository)

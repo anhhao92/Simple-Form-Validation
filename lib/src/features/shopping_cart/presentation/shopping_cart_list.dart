@@ -7,21 +7,21 @@ class ShoppingCartList extends ConsumerWidget {
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
-    final movies = ref.watch(shoppingCartProvider);
+    final state = ref.watch(shoppingCartProvider);
 
     return ListView.builder(
       itemExtent: 70,
-      itemCount: movies.length,
+      itemCount: state.movies.length,
       itemBuilder: (context, index) => ListTile(
         leading: Image.network(
-          movies[index].movie.posterURL,
+          state.movies[index].posterURL,
         ),
         title: Text(
-          movies[index].movie.movieName,
+          state.movies[index].movieName,
           style: const TextStyle(fontWeight: FontWeight.bold),
         ),
         subtitle: Text(
-          "${movies[index].total}x55.000 VND",
+          "${state.totalMap[state.movies[index].movieName]}x55.000 VND",
           style: const TextStyle(fontStyle: FontStyle.italic, fontSize: 16),
         ),
         trailing: IconButton(
@@ -29,7 +29,7 @@ class ShoppingCartList extends ConsumerWidget {
           onPressed: () {
             ref
                 .read(shoppingCartProvider.notifier)
-                .removeFromCard(movies[index].movie);
+                .removeFromCard(state.movies[index]);
           },
         ),
       ),
