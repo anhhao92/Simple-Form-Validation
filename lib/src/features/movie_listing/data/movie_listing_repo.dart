@@ -20,7 +20,7 @@ Future<List<Movie>> movieListingRepository(
             'osVersion': 'iOS 18',
             'osType': 'Unix'
           })}');
-  final json = jsonDecode(response.body) as Map<String, dynamic>;
+  final json = jsonDecode(response.body);
   return (json["Movies"]["Items"] as List)
       .cast<Map<String, Object?>>()
       .map(Movie.fromJson)

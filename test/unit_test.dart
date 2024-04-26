@@ -5,11 +5,12 @@
 // https://flutter.dev/docs/cookbook/testing/unit/introduction
 
 import 'package:flutter_test/flutter_test.dart';
+import 'package:movie_booking/src/utils/date_format.dart';
 
 void main() {
-  group('Plus Operator', () {
-    test('should add two numbers together', () {
-      expect(1 + 1, 2);
+  group('Date format', () {
+    test('should return correct format for given date', () {
+      expect(formatDate("20130430"), "30-04-2013");
     });
   });
 }
